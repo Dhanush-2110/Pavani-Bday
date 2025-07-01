@@ -1,0 +1,560 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Journey 🎞</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to top right, #1a1a2e, #16213e);
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      text-align: center;
+    }h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 3rem;
+  margin: 40px 0 10px;
+  color: #f4a5c0;
+}
+
+p {
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+button.surprise {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button.surprise:hover {
+  background-color: #ff1493;
+}
+
+.events {
+  margin-top: 30px;
+  display: none;
+}
+
+.event-button {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 12px 25px;
+  margin: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.event-button:hover {
+  background-color: #ffffff22;
+}
+
+#quote-box {
+  margin-top: 30px;
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  display: none;
+}
+
+#notepad-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    z-index: 10;
+  }
+  #notepad-paper {
+    background: repeating-linear-gradient(0deg, #fffbe8 0 4px, #ffe4fa 4px 32px);
+    border-radius: 18px;
+    box-shadow: 0 4px 32px #ffb6c1, 0 0 0 8px #fff0fa inset;
+    border: 2.5px solid #ffb6c1;
+    padding: 36px 32px 32px 32px;
+    min-width: 320px;
+    max-width: 90vw;
+    position: relative;
+    margin-bottom: 18px;
+    animation: notepadPop 1.2s cubic-bezier(.4,0,.2,1);
+  }
+  #notepad-spiral {
+    display: none;
+  }
+  #notepad-message {
+    font-size: 1.08rem;
+    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    text-align: left;
+    line-height: 1.7;
+    padding-top: 10px;
+  }
+  @keyframes notepadPop {
+    0% { opacity: 0; transform: scale(0.8) translateY(40px); }
+    80% { opacity: 1; transform: scale(1.05) translateY(-8px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @media (max-width: 600px) {
+    #notepad-paper { min-width: 0; padding: 8vw 2vw; }
+    #notepad-spiral { width: 40vw; }
+  }
+  .notepad-cursor {
+    color: #e94a6a;
+    font-weight: bold;
+    animation: blink 0.9s steps(1) infinite;
+  }
+  @keyframes blink {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+  /* --- Easter Egg Popup Theme (from mainv.html) --- */
+  .eg-popup-overlay {
+    position: fixed;
+    left: 0; top: 0; right: 0; bottom: 0;
+    background: rgba(30, 0, 40, 0.18);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: egFadeIn 0.3s;
+  }
+  @keyframes egFadeIn {
+    from { opacity: 0; } to { opacity: 1; }
+  }
+  .eg-popup {
+    background: linear-gradient(135deg, #fff0fa 80%, #ffe4fa 100%);
+    color: #c72c48;
+    border-radius: 28px;
+    box-shadow: 0 8px 48px #ffb6c1, 0 0 0 8px #fff0fa inset;
+    border: 3px solid #ffb6c1;
+    padding: 38px 34px 30px 34px;
+    min-width: 260px;
+    max-width: 92vw;
+    text-align: center;
+    font-family: 'Open Sans', sans-serif;
+    position: relative;
+    animation: egPop 0.5s cubic-bezier(.4,0,.2,1);
+  }
+  @keyframes egPop {
+    0% { opacity: 0; transform: scale(0.8) translateY(40px); }
+    80% { opacity: 1; transform: scale(1.05) translateY(-8px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  .eg-popup .eg-close-btn {
+    position: absolute;
+    top: 12px; right: 18px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #e94a6a;
+    cursor: pointer;
+    transition: color 0.2s;
+  }
+  .eg-popup .eg-close-btn:hover {
+    color: #c72c48;
+  }
+  .eg-emoji-burst {
+    position: absolute;
+    left: 50%; top: 50%;
+    pointer-events: none;
+    z-index: 10000;
+    font-size: 2.2rem;
+    animation: egBurst 0.8s forwards;
+  }
+  @keyframes egBurst {
+    0% { opacity: 1; transform: scale(0.7) translate(-50%,-50%); }
+    80% { opacity: 1; }
+    100% { opacity: 0; transform: scale(1.7) translate(-50%,-50%) rotate(20deg); }
+  }
+  /* Balloon and Confetti Animation */
+  #bday-anim-overlay {
+      pointer-events: none;
+      position: fixed;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      z-index: 9999;
+      overflow: visible;
+    }
+    .bday-balloon {
+      position: absolute;
+      width: 48px; height: 72px;
+      background: radial-gradient(circle at 60% 30%, #ffb6c1 60%, #ff69b4 100%);
+      border-radius: 50% 50% 48% 48%/60% 60% 100% 100%;
+      box-shadow: 0 8px 24px #ffb6c1aa;
+      animation: balloonFloat 8s linear infinite;
+      opacity: 0.85;
+      will-change: transform;
+    }
+    .bday-balloon:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 2px;
+      height: 22px;
+      background: #ff69b4;
+      border-radius: 2px;
+      transform: translateX(-50%);
+      opacity: 0.7;
+    }
+    @keyframes balloonFloat {
+      0% { transform: translateY(100vh) scale(1) rotate(-8deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-120px) scale(1.05) rotate(8deg); opacity: 0; }
+    }
+    .bday-confetti {
+      position: absolute;
+      width: 12px; height: 18px;
+      border-radius: 4px;
+      opacity: 0.85;
+      animation: confettiFloat 3.5s linear infinite;
+      will-change: transform;
+    }
+    @keyframes confettiFloat {
+      0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-60px) rotate(360deg) scale(1.1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+    <div id="notepad-container">
+      <div id="notepad-paper">
+        <div id="notepad-message"></div>
+      </div>
+    </div>
+    <h1>One Last Surprise 🎁</h1>
+    <p>Before you go, let's look back at everything we've been through together, Sloth 🐨💫</p>
+    <button class="surprise" id="showSurpriseBtn">Click to See Surprise</button>
+    <div id="events-popup" style="display:none;"></div>
+    <div id="quote-box"></div>
+    <!-- Balloon and Confetti Animation Overlay -->
+  <div id="bday-anim-overlay"></div>
+  <script>
+    // Surprise popup logic
+    const eventList = [
+    
+      { key: 'MyViewReply', label: 'MyView Reply' },
+      { key: 'laughAttack', label: 'Laugh Attack' },
+      { key: 'ThingsBoutU', label: 'ThingsBoutYou' },
+      { key: 'dreamTalk', label: 'Dream Stories' },
+      { key: 'FunnyMoments', label: 'Funny Moments' },
+      { key: 'birthdayPromise', label: 'Birthday Promise' }
+    ];
+    document.getElementById('showSurpriseBtn').onclick = function() {
+      const popup = document.getElementById('events-popup');
+      popup.innerHTML = `<div id='events-modal' style='position:fixed;left:50%;top:50%;transform:translate(-50%,-50%);background:rgba(255,255,255,0.98);color:#c72c48;border-radius:24px;box-shadow:0 8px 48px #ffb6c1,0 0 0 8px #fff0fa inset;padding:36px 32px 32px 32px;z-index:20001;min-width:260px;max-width:90vw;text-align:left;border:3px solid #ffb6c1;'><div style='font-size:1.3rem;font-family:"Great Vibes",cursive;text-align:center;margin-bottom:18px;'>Our Memories</div><ul id='event-list' style='list-style:none;padding:0;margin:0;'>${eventList.map(ev=>`<li style='margin-bottom:18px;'><span style='font-size:1.1rem;'>${ev.label}</span> <button class='reveal-arrow' data-key='${ev.key}' style='margin-left:12px;font-size:1.2rem;background:none;border:none;cursor:pointer;color:#e94a6a;vertical-align:middle;' title='Reveal'><span style="display:inline-block;transform:rotate(90deg);">▶</span></button></li>`).join('')}</ul><button id='close-events-modal' style='margin-top:18px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;display:block;margin-left:auto;margin-right:auto;'>Close</button></div>`;
+      popup.style.display = 'block';
+      document.getElementById('close-events-modal').onclick = function(){popup.style.display='none';};
+      document.querySelectorAll('.reveal-arrow').forEach(btn => {
+        btn.onclick = function(e) {
+          e.stopPropagation();
+          const key = btn.getAttribute('data-key');
+          showIncidentPopup(key);
+        };
+      });
+    };
+    function showIncidentPopup(key) {
+      const quotes = {
+       
+        MyViewReply: [
+          "uh, I'll be totally honest with you—I have no idea how we became such close friends. Believe it or not, I've never once regretted it. Sure, you irritate me sometimes, but it's the kind that doesn't actually irritate me, you know? In the end, I'm just really happy to have you as a friend\n\nI never talk much on the phone, but with you, it's different. I don't get bored talking to you. Right now, you're probably the closest person to me, even more than my own brother in some ways. And honestly, that means a lot.",
+          "I'm really, really grateful to have a friend like you, Rey. Sometimes, I even get scared thinking about losing you. I guess I'm just lucky. It's so rare to find someone like you, and I truly mean that. So just know that I'll always be there to support you at any time so feel free to share anything u want with me ok\n\nI don't know bout u but I rlly don't talk this much with anyone else",
+          "Sloth you really wrote all this? bruh Damn, you made me emotional morning morning only. I never expected a message like this from you uk, I'm really rlly happy to read it i read it like 6 times bfore typing my msg only. Ra rlly means a lot to me that you trust me enough to share all the smallest things. And yes bruh, you’re right if I hadn’t texted that day, I wouldn’t have gotten to know such a special, irritating, talkative, and kind friend like you. (ig the credit goes to nandan as he's the one who forced me into knowing wether its holiday or not)",
+          "I swear you are the only person who calls me a monkey, donkey, pig, and buffalo in one message and still makes it sound better. But honestly, you are one of the best things that happened to me too like its rlly so unexpected i didn't even dream of having a friend like u and I wouldn’t trade this friendship for anythin\nAnd about my problems being fun and crazy maybe it's just because I have a Sloth to listen to them and make them sound even funnier. 😂 cuz somethings i say are just bad incidents bruh and i don't even know why I start to laugh. Bruh",
+          "I don't care how many mood swings you have or what u tell its fine ill be there to litsne, you can always be yourself with me. So no matter what, just know that I'll always be here, ready to be irritated by you. Why did I say that no ready to be patner with u to irritate others 🤧\nAnd yes, Askin permission to sleep ah I don't know reeyy now that I think how tf did I make such an habit🫨 even I'm realizing now leave . I just want to say that I never once truly regretted bring ur friend Right now, you're probably the closest person to me, even more than my own brother in some ways. And honestly, It means a lot bruh cuz u know some stuff more than my bro knows bout me maybe ur and updated version😂.",
+          "Thanks for this message 🦥.it's more special cuz u types soo much 😳 It really made my day. And just so you know, our friendship is not ending after studies you're stuck with me. 😌😂"
+        ],
+        laughAttack: [
+          "You laughed like a dying seal and I couldn’t stop smiling. It was ridiculous and perfect.",
+          "h ok this is weard after so long🤧🤧 so I just wanted to say ahh pavaniiiiii thank you for literally every thing!!!! Like everything you've done for me so far.😭 You're always soooooo special to me uk idk youre just someone who i dint want to lose in my life and ill do anything to keep it like that, Bruh i can't even say all these in words bruh !Its like leaveee i cang even do anything to you alos you look so cute that ive tought to hold your cheeks and smash em many times!!🤭, its like i love every ....every little thing about you bruhh idk i even keep the paper piece its like every you do is something I cherish so deeply beuh 😮‍💨 I wanted to put the Keychain you gave me somewhere so that I'll always have it with me and I fkn lost it ill search it😤😤, ",
+          "I know I am sooo fkn annoying sometimes ik cuz even i feel like i am if i was in your place ill be so madd😡.... okay more than just leave Eben I feel like I'm a bit too clingy uk and I can't rlly keave it🤧 and i know I talk a lot about myself too bruh its fine i love to see you laugh even if its at my scary story but you alsi say somethingnaaa im not good at startong conversation!!! But i want to fkn takj to you. But trust me bruh when I say this!!! What ever I say or speak or doio you are always the most important person for me and I'll do anything to be your tip priority!😤 , I want to care for you like no one else dooo, and keep you smiling always , I always try but still will make you cry in the end bruh I promise I'll try my best not to do that again! Nd bruhh ",
+          "I love your smile!!!!!  it's like my whole world reyyy tahts why i say even in video call smileyou look so cute and goood uk🤭 i loved it from befofe talking to u itself. I love the way you act! The way you tease! I don't care if you're  being your silly, lazy , idk I want yiu to say anything and everything to meee!!! Being with you make me feel like I'm home da I feel safe and I can just be how ever i want snd be a kidd!I love how you care for me bruh even sometimes when I don't deserve it and  when I’m being a pain beuh. It's just Spending time with you whether it’s like talking, joking, or just being around  it’s the best part of my day withoutit my day jist feels so empty. It doesn’t matter if we’re doing nothing or something crazy uk, ",
+          "All the tome like any moment is precious to me ,You are more than just my bestie!!!!! Beuhh, You are my comfort, my change!, my peace! My Sloth! My pavanii🤧🤧🤧 And no matter what, that'll never changee!!! I’m grateful for you da rlly I’m proud to have you i can say to everyonethis is my pavani😤. I’m rlly  lucky to be loved by someone as amazing as you bruh I'm soo fkn lucky!!!😆 ill always be there for you 😤 You dint know how special you are for me uk, there is not a minute that I don't think bout you  so treat me like a kiddd🥺, care for meee moree and I'll just be with you!!! That's all pavani thank you for all the things you've done for me da nd sorry for hurting you ."
+        ],
+        ThingsBoutU: [
+          "Good is ur kind, you like animals and how talkative you are. You can be both helpful and honest, though your honesty comes only after you irritate me and make me find the right answer. Ahh honestly I don’t mind the irritation, it’s what makes you special from the rest of my friends ig, and without you talking all day I'll just get bored.",
+          "You don’t really have a bad side I think till now at least or what I know of u, except maybe you can stop blackmailing me with photos 🥲 that doesn’t suit my introverted lifestyle frr fr! See when I first saw you na I thought you were quiet, nerdy 😅 who'll only engage in small formal talks uhh see like a teacher speaking to a student.",
+          "Then when later I saw u with ur friends I thought ahh she's friendly only but like let ur self loose within a space kinda I mean only around ur friends. Also like most of my friends are calm and like I'll be the one to actually irritate them, you're diff cuz like you reverse that.",
+          "And honestly I was rlly surprised when u started to talk to me uk i was playing basketball the first time you started messaging and i thought you like wanted something from me 🤔 i mean there was no real reason to talk that much. That's why like for me u are in a special friend zone uk I've not shared so much things bout myself to anyone other than my brothers so see I trust you ok.",
+          "Like my normal daily routine includes talking to u ig ahh and bad side is you don't sleep🥲 sleep a bit early ma."
+        ],
+        dreamTalk: "Your dream stories make zero sense but I’d listen to every one of them because it’s you.",
+        FunnyMoments: [
+          "Later on coming to your head pen thing bro what the **** actually look literally I was actually doing my physics work or something and bruh Suddenly this girl in front of me called Pavani just took a pin out of nowhere and justice like twisted and put it in her head and her hair somehow managed to handle that and the pen was not falling there was 2 surprises actually one was the tau idiot we did not have pen to write only and you are putting it to head then the sir is coming towards us so secondary how is the pen not falling I do not understand I cannot ask anyone I asked Pratish also but he said why do you care it is all girl things it just happens like that but still now till now I dont know how it happens I do not know its actually a mystery right now even even second sem da ece class that to also physics edited only ec class we are sitting and bro you should see this expression on the face of neelrathoddd literally what happened now you are putting you just took out the pen and you are putting it and its my habit actually whenever you put my the pen my concentration just go there ok So what happened is this he neel kanth attended he did not attend first time he did so he didnt so 2nd time he just he was country though he was like there is no what what what what like look at she just twisted her pen and just put it into her head and it is just sitting like that how is it possible what are they doing how can they put pen looooo this is the first time I have seen bro could literally understand his emotions the first time I was feeling the same and even now when he ask I cant explain it to him how it starts actually I just said its like that only the they will put they will turn and it will just stick to their head like that I cannot do anything and from first time I had a feeling that I should just pluck it I should just pull it and feel how it will unfold how the hair will unfold or how it just sits I wanted to actually pull the pen and see first time I was not so talkative so i couldn't 2nd time as i started to talk to you i just wanted it so literally the first attempt I did in ece class bruh I got so **** jealous no not jealous my stomach was burning actually I got the pen I held the pen and you actually turned back I just felt scared I held her hair I guess so she got angry or something I just left then you started laughing now my stomach bro that turned you even called me you even called me and made me burn my stomach that was actually what can I say pavani the second term also bro how can you how can you see the shadow on escaped I planned so much even likita was laughing that I felt so embarrassing but later on I got it I kind of know how it works actually but still it's a mystery how the pen stayes it's there I tried with my hair also and it somehow works I don't know it's like that only now or i don't know bro it is like that.",
+          "From first time I had a feeling that I should just pluck it I should just pull it and feel how it will unfold how the hair will unfold or how it just sits. I wanted to actually pull the pen and see. First time I was not so talkative so i couldn't. 2nd time as i started to talk to you i just wanted it so literally the first attempt I did in ece class bruh I got so **** jealous no not jealous my stomach was burning actually I got the pen I held the pen and you actually turned back I just felt scared I held her hair I guess so she got angry or something I just left then you started laughing now my stomach bro that turned you even called me you even called me and made me burn my stomach that was actually what can I say pavani the second term also bro how can you how can you see the shadow on escaped I planned so much even likita was laughing that I felt so embarrassing but later on I got it I kind of know how it works actually but still it's a mystery how the pen stays it's there I tried with my hair also and it somehow works I don't know it's like that only now or i don't know bro it is like that."
+        ],
+        birthdayPromise: "This birthday, I’m not just wishing you happiness. I’m promising to be there through it all — sleepy days, sad days, and allsooo i will rllly try to be less annoying and will try to understand you and will make you feel better with all my hear okayy kiddddd."
+      };
+      // Slider logic for FunnyMoments
+      if (key === 'FunnyMoments' && Array.isArray(quotes.FunnyMoments)) {
+        let idx = 0;
+        const slides = quotes.FunnyMoments;
+        const popup = document.createElement('div');
+        popup.style.position = 'fixed';
+        popup.style.left = '50%';
+        popup.style.top = '50%';
+        popup.style.transform = 'translate(-50%,-50%)';
+        popup.style.background = 'rgba(255,255,255,0.99)';
+        popup.style.color = '#c72c48';
+        popup.style.borderRadius = '24px';
+        popup.style.boxShadow = '0 8px 48px #ffb6c1, 0 0 0 8px #fff0fa inset';
+        popup.style.padding = '36px 32px 32px 32px';
+        popup.style.zIndex = 30001;
+        popup.style.minWidth = '320px';
+        popup.style.maxWidth = '96vw';
+        popup.style.maxHeight = '80vh';
+        popup.style.overflow = 'auto';
+        popup.style.textAlign = 'center';
+        popup.style.border = '3px solid #ffb6c1';
+        popup.innerHTML = `
+          <div id='funny-slider-text' style='font-size:1.08rem;margin-bottom:18px;white-space:pre-line;line-height:1.6;max-height:48vh;overflow-y:auto;'>${slides[0]}</div>
+          <div style='display:flex;justify-content:center;gap:18px;margin-bottom:10px;'>
+            <button id='funny-prev' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Prev</button>
+            <span id='funny-slide-indicator' style='align-self:center;font-size:1rem;color:#e94a6a;'>1/${slides.length}</span>
+            <button id='funny-next' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Next</button>
+          </div>
+          <button id='close-incident-popup' style='margin-top:8px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Close</button>
+        `;
+        document.body.appendChild(popup);
+        function updateFunnySlider() {
+          document.getElementById('funny-slider-text').textContent = slides[idx];
+          document.getElementById('funny-slide-indicator').textContent = `${idx+1}/${slides.length}`;
+        }
+        document.getElementById('funny-prev').onclick = function() {
+          idx = (idx - 1 + slides.length) % slides.length;
+          updateFunnySlider();
+        };
+        document.getElementById('funny-next').onclick = function() {
+          idx = (idx + 1) % slides.length;
+          updateFunnySlider();
+        };
+        document.getElementById('close-incident-popup').onclick = function(){popup.remove();};
+        return;
+      }
+      // Slider logic for ThingsBoutU
+      if (key === 'ThingsBoutU' && Array.isArray(quotes.ThingsBoutU)) {
+        let idx = 0;
+        const slides = quotes.ThingsBoutU;
+        const popup = document.createElement('div');
+        popup.style.position = 'fixed';
+        popup.style.left = '50%';
+        popup.style.top = '50%';
+        popup.style.transform = 'translate(-50%,-50%)';
+        popup.style.background = 'rgba(255,255,255,0.99)';
+        popup.style.color = '#c72c48';
+        popup.style.borderRadius = '24px';
+        popup.style.boxShadow = '0 8px 48px #ffb6c1, 0 0 0 8px #fff0fa inset';
+        popup.style.padding = '36px 32px 32px 32px';
+        popup.style.zIndex = 30001;
+        popup.style.minWidth = '320px';
+        popup.style.maxWidth = '96vw';
+        popup.style.maxHeight = '80vh';
+        popup.style.overflow = 'auto';
+        popup.style.textAlign = 'center';
+        popup.style.border = '3px solid #ffb6c1';
+        popup.innerHTML = `
+          <div id='things-slider-text' style='font-size:1.08rem;margin-bottom:18px;white-space:pre-line;line-height:1.6;max-height:48vh;overflow-y:auto;'>${slides[0]}</div>
+          <div style='display:flex;justify-content:center;gap:18px;margin-bottom:10px;'>
+            <button id='things-prev' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Prev</button>
+            <span id='things-slide-indicator' style='align-self:center;font-size:1rem;color:#e94a6a;'>1/${slides.length}</span>
+            <button id='things-next' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Next</button>
+          </div>
+          <button id='close-things-popup' style='margin-top:8px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Close</button>
+        `;
+        document.body.appendChild(popup);
+        function updateThingsSlider() {
+          document.getElementById('things-slider-text').textContent = slides[idx];
+          document.getElementById('things-slide-indicator').textContent = `${idx+1}/${slides.length}`;
+        }
+        document.getElementById('things-prev').onclick = function() {
+          idx = (idx - 1 + slides.length) % slides.length;
+          updateThingsSlider();
+        };
+        document.getElementById('things-next').onclick = function() {
+          idx = (idx + 1) % slides.length;
+          updateThingsSlider();
+        };
+        document.getElementById('close-things-popup').onclick = function(){popup.remove();};
+        return;
+      }
+      // Slider logic for MyViewReply
+      if (key === 'MyViewReply' && Array.isArray(quotes.MyViewReply)) {
+        let idx = 0;
+        const slides = quotes.MyViewReply;
+        const popup = document.createElement('div');
+        popup.style.position = 'fixed';
+        popup.style.left = '50%';
+        popup.style.top = '50%';
+        popup.style.transform = 'translate(-50%,-50%)';
+        popup.style.background = 'rgba(255,255,255,0.99)';
+        popup.style.color = '#c72c48';
+        popup.style.borderRadius = '24px';
+        popup.style.boxShadow = '0 8px 48px #ffb6c1, 0 0 0 8px #fff0fa inset';
+        popup.style.padding = '36px 32px 32px 32px';
+        popup.style.zIndex = 30001;
+        popup.style.minWidth = '320px';
+        popup.style.maxWidth = '96vw';
+        popup.style.maxHeight = '80vh';
+        popup.style.overflow = 'auto';
+        popup.style.textAlign = 'center';
+        popup.style.border = '3px solid #ffb6c1';
+        popup.innerHTML = `
+          <div id='myviewreply-slider-text' style='font-size:1.08rem;margin-bottom:18px;white-space:pre-line;line-height:1.6;max-height:48vh;overflow-y:auto;'>${slides[0]}</div>
+          <div style='display:flex;justify-content:center;gap:18px;margin-bottom:10px;'>
+            <button id='myviewreply-prev' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Prev</button>
+            <span id='myviewreply-slide-indicator' style='align-self:center;font-size:1rem;color:#e94a6a;'>1/${slides.length}</span>
+            <button id='myviewreply-next' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Next</button>
+          </div>
+          <button id='close-myviewreply-popup' style='margin-top:8px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Close</button>
+        `;
+        document.body.appendChild(popup);
+        function updateMyViewReplySlider() {
+          document.getElementById('myviewreply-slider-text').textContent = slides[idx];
+          document.getElementById('myviewreply-slide-indicator').textContent = `${idx+1}/${slides.length}`;
+        }
+        document.getElementById('myviewreply-prev').onclick = function() {
+          idx = (idx - 1 + slides.length) % slides.length;
+          updateMyViewReplySlider();
+        };
+        document.getElementById('myviewreply-next').onclick = function() {
+          idx = (idx + 1) % slides.length;
+          updateMyViewReplySlider();
+        };
+        document.getElementById('close-myviewreply-popup').onclick = function(){popup.remove();};
+        return;
+      }
+      // Slider logic for laughAttack
+      if (key === 'laughAttack' && Array.isArray(quotes.laughAttack)) {
+        let idx = 0;
+        const slides = quotes.laughAttack;
+        const popup = document.createElement('div');
+        popup.style.position = 'fixed';
+        popup.style.left = '50%';
+        popup.style.top = '50%';
+        popup.style.transform = 'translate(-50%,-50%)';
+        popup.style.background = 'rgba(255,255,255,0.99)';
+        popup.style.color = '#c72c48';
+        popup.style.borderRadius = '24px';
+        popup.style.boxShadow = '0 8px 48px #ffb6c1, 0 0 0 8px #fff0fa inset';
+        popup.style.padding = '36px 32px 32px 32px';
+        popup.style.zIndex = 30001;
+        popup.style.minWidth = '320px';
+        popup.style.maxWidth = '96vw';
+        popup.style.maxHeight = '80vh';
+        popup.style.overflow = 'auto';
+        popup.style.textAlign = 'center';
+        popup.style.border = '3px solid #ffb6c1';
+        popup.innerHTML = `
+          <div id='laughattack-slider-text' style='font-size:1.08rem;margin-bottom:18px;white-space:pre-line;line-height:1.6;max-height:48vh;overflow-y:auto;'>${slides[0]}</div>
+          <div style='display:flex;justify-content:center;gap:18px;margin-bottom:10px;'>
+            <button id='laughattack-prev' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Prev</button>
+            <span id='laughattack-slide-indicator' style='align-self:center;font-size:1rem;color:#e94a6a;'>1/${slides.length}</span>
+            <button id='laughattack-next' style='padding:6px 18px;font-size:1.1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Next</button>
+          </div>
+          <button id='close-laughattack-popup' style='margin-top:8px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Close</button>
+        `;
+        document.body.appendChild(popup);
+        function updateLaughAttackSlider() {
+          document.getElementById('laughattack-slider-text').textContent = slides[idx];
+          document.getElementById('laughattack-slide-indicator').textContent = `${idx+1}/${slides.length}`;
+        }
+        document.getElementById('laughattack-prev').onclick = function() {
+          idx = (idx - 1 + slides.length) % slides.length;
+          updateLaughAttackSlider();
+        };
+        document.getElementById('laughattack-next').onclick = function() {
+          idx = (idx + 1) % slides.length;
+          updateLaughAttackSlider();
+        };
+        document.getElementById('close-laughattack-popup').onclick = function(){popup.remove();};
+        return;
+      }
+      const popup = document.createElement('div');
+      popup.style.position = 'fixed';
+      popup.style.left = '50%';
+      popup.style.top = '50%';
+      popup.style.transform = 'translate(-50%,-50%)';
+      popup.style.background = 'rgba(255,255,255,0.99)';
+      popup.style.color = '#c72c48';
+      popup.style.borderRadius = '24px';
+      popup.style.boxShadow = '0 8px 48px #ffb6c1, 0 0 0 8px #fff0fa inset';
+      popup.style.padding = '36px 32px 32px 32px';
+      popup.style.zIndex = 30001;
+      popup.style.minWidth = '260px';
+      popup.style.maxWidth = '90vw';
+      popup.style.textAlign = 'center';
+      popup.style.border = '3px solid #ffb6c1';
+      popup.innerHTML = `<div style='font-size:1.2rem;margin-bottom:18px;'>${quotes[key]}</div><button id='close-incident-popup' style='margin-top:18px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;'>Close</button>`;
+      document.body.appendChild(popup);
+      document.getElementById('close-incident-popup').onclick = function(){popup.remove();};
+    }
+    // Typing animation for notepad message
+    window.addEventListener('DOMContentLoaded', function() {
+      const messageHTML = `<span style=\"font-size:1.2rem; color:#c72c48; font-family:'Great Vibes',cursive;\">Dear Pavani,</span><br><br>
+      <span style=\"font-size:1.1rem; color:#222;\">Wishing you the happiest birthday, Sloth!<br>
+      May your year be filled with laughter, wild dreams, and memories as sweet as cake.<br>
+      You make every moment brighter, every silence warmer, and every day a little more magical.<br>
+      I hope this birthday is just the start of your best adventures yet.<br><br>
+      Thank you for being you—my favorite sleepyhead, my partner in crime, and my forever friend.<br><br>
+      <span style=\"color:#e94a6a;font-weight:bold;\">Happy Birthday! 🎂💖✨</span><br><br>
+      <span style=\"font-size:1rem; color:#888;\">— With all the love and madness, Dhanush</span></span>`;
+      const notepad = document.getElementById('notepad-message');
+      let i = 0;
+      function typeChar() {
+        if (i <= messageHTML.length) {
+          notepad.innerHTML = messageHTML.slice(0, i) + '<span class="notepad-cursor">|</span>';
+          i++;
+          setTimeout(typeChar, 13 + Math.random()*35);
+        } else {
+          notepad.innerHTML = messageHTML;
+        }
+      }
+      typeChar();
+    });
+    // Balloon and Confetti Animation
+  function spawnBalloonsAndConfetti() {
+    const overlay = document.getElementById('bday-anim-overlay');
+    // Balloons
+    for(let i=0;i<7;i++){
+      const balloon = document.createElement('div');
+      balloon.className = 'bday-balloon';
+      const left = 5 + Math.random()*90;
+      balloon.style.left = left + 'vw';
+      balloon.style.bottom = '-80px';
+      balloon.style.background = `radial-gradient(circle at 60% 30%, ${['#ffb6c1','#ff69b4','#ffe4fa','#f4a5c0','#f7cac9','#f9e79f','#a3e4d7'][i%7]} 60%, #ff69b4 100%)`;
+      balloon.style.animationDelay = (Math.random()*6) + 's';
+      overlay.appendChild(balloon);
+    }
+    // Confetti
+    for(let i=0;i<22;i++){
+      const confetti = document.createElement('div');
+      confetti.className = 'bday-confetti';
+      const left = 2 + Math.random()*96;
+      confetti.style.left = left + 'vw';
+      confetti.style.bottom = '-30px';
+      confetti.style.background = ['#ffb6c1','#ff69b4','#ffe4fa','#f4a5c0','#f7cac9','#f9e79f','#a3e4d7','#fff','#e94a6a'][i%9];
+      confetti.style.animationDelay = (Math.random()*3.5) + 's';
+      overlay.appendChild(confetti);
+    }
+  }
+  window.addEventListener('DOMContentLoaded', spawnBalloonsAndConfetti);
+  </script></body>
+</html>

@@ -1,0 +1,750 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cake, Sloth 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: radial-gradient(circle, #1e1e2f, #0e0e15);
+      color: #fff;
+      text-align: center;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3rem;
+      margin-top: 30px;
+      color: #ffb6c1;
+      text-shadow: 0 0 18px #ffb6c1, 0 0 32px #fff, 0 0 2px #ff69b4;
+      animation: headingGlow 2.5s infinite alternate;
+    }
+    @keyframes headingGlow {
+      0% { text-shadow: 0 0 8px #ffb6c1, 0 0 12px #fff; }
+      100% { text-shadow: 0 0 32px #ff69b4, 0 0 48px #fff; }
+    }
+    .cake-container {
+      margin-top: 40px;
+      position: relative;
+      width: 340px;
+      height: 370px;
+      margin-left: auto;
+      margin-right: auto;
+      z-index: 2;
+    }
+    .cake-plate {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 260px;
+      height: 32px;
+      background: radial-gradient(ellipse at center, #fff 70%, #e0e0e0 100%);
+      border-radius: 50% 50% 60% 60%/60% 60% 100% 100%;
+      box-shadow: 0 2px 18px #2228, 0 0 0 8px #fff0fa inset;
+      z-index: 0;
+    }
+    .cake-layer {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 60px;
+      background: linear-gradient(180deg, #ffe4fa 0%, #ffb6c1 100%);
+      border-radius: 100px 100px 80px 80px/60px 60px 40px 40px;
+      box-shadow: 0 4px 16px #ffb6c1, 0 0 0 6px #fff0fa inset;
+      border: 3px solid #ffb6c1;
+      z-index: 2;
+    }
+    .cake-layer.bottom {
+      bottom: 32px;
+      width: 240px;
+      height: 70px;
+      background: linear-gradient(180deg, #c72c48 0%, #7a1126 100%);
+      border-radius: 60px 60px 60px 60px/50px 50px 50px 50px;
+      box-shadow: 0 8px 32px #c72c48, 0 0 0 8px #fff0fa inset;
+      border: 4px solid #a01a34;
+      z-index: 1;
+      overflow: visible;
+    }
+    .cake-layer.middle {
+      bottom: 88px; /* Lowered for better overlap */
+      width: 200px;
+      height: 60px;
+      background: linear-gradient(180deg, #e94a6a 0%, #c72c48 100%);
+      border-radius: 100px 100px 80px 80px/60px 60px 40px 40px;
+      box-shadow: 0 4px 16px #c72c48, 0 0 0 6px #fff0fa inset;
+      border: 3px solid #a01a34;
+      z-index: 2;
+      overflow: visible;
+    }
+    .cake-layer.top {
+      bottom: 142px; /* Lowered for better overlap */
+      width: 160px;
+      height: 48px;
+      background: linear-gradient(180deg, #fff 0%, #e94a6a 100%);
+      border-radius: 80px 80px 60px 60px/48px 48px 32px 32px;
+      box-shadow: 0 2px 8px #c72c48, 0 0 0 4px #fff0fa inset;
+      border: 2.5px solid #a01a34;
+      z-index: 3;
+      overflow: visible;
+    }
+    .cake-drip, .cake-drip-middle, .cake-drip-bottom {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      pointer-events: none;
+    }
+    .cake-drip {
+      position: absolute;
+      left: 50%;
+      bottom: 0; /* Attach to bottom of top layer */
+      transform: translateX(-50%);
+      width: 160px;
+      height: 32px; /* Slightly taller for realism */
+      z-index: 4;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px #a01a34cc);
+    }
+    .cake-drip svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .cake-drip-middle {
+      position: absolute;
+      left: 50%;
+      bottom: 0; /* Attach to bottom of middle layer */
+      transform: translateX(-50%);
+      width: 200px;
+      height: 28px;
+      z-index: 3;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px #a01a34cc);
+    }
+    .cake-drip-bottom {
+      position: absolute;
+      left: 50%;
+      bottom: 0; /* Attach to bottom of bottom layer */
+      transform: translateX(-50%);
+      width: 240px;
+      height: 22px;
+      z-index: 2;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px #a01a34cc);
+    }
+    .cake-toppings {
+      position: absolute;
+      left: 50%;
+      bottom: 170px;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 40px;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .topping {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 11;
+      box-shadow: 0 2px 8px #0002;
+      animation: popTopping 0.8s cubic-bezier(.4,0,.2,1);
+    }
+    .topping.cherry {
+      width: 18px; height: 18px;
+      background: radial-gradient(circle at 30% 30%, #ff4b6e 80%, #b8002e 100%);
+      border: 2px solid #b8002e;
+    }
+    .topping.sprinkle {
+      width: 8px; height: 8px;
+      background: #fff;
+      border: 2px solid #ffb6c1;
+      transform: rotate(-20deg);
+    }
+    .topping.choco {
+      width: 12px; height: 12px;
+      background: #7b3f00;
+      border: 2px solid #4b2300;
+    }
+    @keyframes popTopping {
+      0% { transform: scale(0.5) translateY(-10px); opacity: 0; }
+      100% { transform: scale(1) translateY(0); opacity: 1; }
+    }
+    .cake-layer.middle {
+      bottom: 88px; /* Lowered for better overlap */
+      width: 200px;
+      height: 60px;
+      background: linear-gradient(180deg, #e94a6a 0%, #c72c48 100%);
+      border-radius: 100px 100px 80px 80px/60px 60px 40px 40px;
+      box-shadow: 0 4px 16px #c72c48, 0 0 0 6px #fff0fa inset;
+      border: 3px solid #a01a34;
+      z-index: 2;
+      overflow: visible;
+    }
+    .cake-layer.top {
+      bottom: 142px; /* Lowered for better overlap */
+      width: 160px;
+      height: 48px;
+      background: linear-gradient(180deg, #fff 0%, #e94a6a 100%);
+      border-radius: 80px 80px 60px 60px/48px 48px 32px 32px;
+      box-shadow: 0 2px 8px #c72c48, 0 0 0 4px #fff0fa inset;
+      border: 2.5px solid #a01a34;
+      z-index: 3;
+      overflow: visible;
+    }
+    .cake-drip {
+      position: absolute;
+      left: 50%;
+      bottom: 0; /* Attach to bottom of top layer */
+      transform: translateX(-50%);
+      width: 160px;
+      height: 32px; /* Slightly taller for realism */
+      z-index: 4;
+      pointer-events: none;
+      filter: drop-shadow(0 2px 4px #a01a34cc);
+    }
+    .cake-drip svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .cake-icing {
+      position: absolute;
+      bottom: 170px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 170px;
+      height: 28px;
+      background: repeating-linear-gradient(90deg, #fff0fa 0 18px, #ffe4fa 18px 36px);
+      border-radius: 50px 50px 40px 40px/30px 30px 20px 20px;
+      z-index: 5;
+      opacity: 0.92;
+      box-shadow: 0 2px 8px #ffb6c1;
+      border: 2px solid #ffb6c1;
+    }
+    .candles {
+      position: absolute;
+      left: 50%;
+      bottom: 192px;
+      transform: translateX(-50%);
+      width: 150px;
+      height: 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .candle {
+      position: relative;
+      width: 18px;
+      height: 48px;
+      background: linear-gradient(180deg, #fff 60%, #ffe4fa 100%);
+      border-radius: 8px;
+      border: 2px solid #ffb6c1;
+      margin: 0 2px;
+      box-shadow: 0 2px 8px #ffb6c1;
+      cursor: pointer;
+      z-index: 11;
+      transition: transform 0.15s;
+      pointer-events: auto;
+    }
+    .candle:active {
+      transform: scale(0.95) translateY(2px);
+    }
+    .wick {
+      position: absolute;
+      top: -10px;
+      left: 50%;
+      width: 3px;
+      height: 12px;
+      background: #333;
+      border-radius: 2px;
+      transform: translateX(-50%);
+      z-index: 12;
+    }
+    .flame {
+      position: absolute;
+      top: -22px;
+      left: 50%;
+      width: 16px;
+      height: 22px;
+      transform: translateX(-50%);
+      z-index: 13;
+      pointer-events: none;
+      opacity: 1;
+      transition: opacity 0.3s;
+      animation: flameFlicker 1.1s infinite alternate;
+    }
+    @keyframes flameFlicker {
+      0% { filter: blur(0.5px) brightness(1.1); transform: translateX(-50%) scaleY(1); }
+      100% { filter: blur(1.5px) brightness(1.3); transform: translateX(-50%) scaleY(1.12) scaleX(0.95); }
+    }
+    .flame.off {
+      opacity: 0;
+      animation: none;
+    }
+    .smoke {
+      position: absolute;
+      top: -28px;
+      left: 50%;
+      width: 12px;
+      height: 18px;
+      transform: translateX(-50%);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 14;
+      animation: smokeRise 1.1s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes smokeRise {
+      0% { opacity: 0.7; filter: blur(0.5px); transform: translateX(-50%) scale(0.7) translateY(0); }
+      60% { opacity: 0.5; }
+      100% { opacity: 0; filter: blur(2px); transform: translateX(-50%) scale(1.2) translateY(-30px); }
+    }
+    .wish-popup {
+      display: none;
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%) scale(0.9);
+      background: rgba(255,255,255,0.97);
+      color: #ff1493;
+      border-radius: 32px;
+      box-shadow: 0 8px 48px #ffb6c1, 0 0 0 8px #fff0fa inset;
+      padding: 48px 32px 38px 32px;
+      font-size: 2.1rem;
+      font-family: 'Great Vibes', cursive;
+      z-index: 10000;
+      animation: wishPop 1.2s cubic-bezier(.4,0,.2,1) forwards;
+      text-shadow: 0 0 18px #ffb6c1, 0 0 32px #fff;
+      border: 4px solid #ffb6c1;
+    }
+    .wish-popup.active {
+      display: block;
+      animation: wishPop 1.2s cubic-bezier(.4,0,.2,1) forwards;
+    }
+    @keyframes wishPop {
+      0% { opacity: 0; transform: translate(-50%,-50%) scale(0.7); }
+      80% { opacity: 1; transform: translate(-50%,-50%) scale(1.08); }
+      100% { opacity: 1; transform: translate(-50%,-50%) scale(1); }
+    }
+    .confetti {
+      position: fixed;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+    .confetti-piece {
+      position: absolute;
+      width: 18px; height: 18px;
+      font-size: 1.5rem;
+      opacity: 0.85;
+      pointer-events: none;
+      animation: confettiFall 1.8s linear forwards;
+    }
+    @keyframes confettiFall {
+      0% { opacity: 0.7; transform: translateY(-40px) rotate(0deg) scale(1); }
+      80% { opacity: 1; }
+      100% { opacity: 0.2; transform: translateY(100vh) rotate(360deg) scale(1.2); }
+    }
+    #easter2 {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      font-size: 1.2rem;
+      color: rgba(255,255,255,0.18);
+      cursor: pointer;
+      z-index: 20000;
+      transition: color 0.2s, font-size 0.2s;
+    }
+    #easter2:hover {
+      color: #ffb6c1;
+      font-size: 1.5rem;
+    }
+    #mail-instruct {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      z-index: 10001;
+      cursor: pointer;
+      font-size: 3.2rem;
+      user-select: none;
+      transition: transform 0.15s, color 0.2s;
+      color: #ffb6c1;
+      filter: drop-shadow(0 2px 8px #fff0fa) drop-shadow(0 0 8px #ffb6c1);
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      padding: 8px 12px 8px 12px;
+      box-shadow: 0 2px 16px #ffb6c1;
+    }
+    #mail-instruct:hover {
+      color: #fff;
+      background: #ffb6c1;
+      transform: scale(1.12) rotate(-8deg);
+      box-shadow: 0 4px 32px #ffb6c1, 0 0 0 8px #fff0fa inset;
+    }
+    /* Easter egg button */
+    #easter-cake {
+      position: fixed;
+      left: 24px;
+      bottom: 24px;
+      font-size: 2.2rem;
+      color: #fff0fa;
+      background: rgba(255,182,193,0.13);
+      border-radius: 50%;
+      padding: 10px 14px 10px 14px;
+      box-shadow: 0 2px 12px #ffb6c1;
+      cursor: pointer;
+      z-index: 20001;
+      transition: color 0.2s, background 0.2s, font-size 0.2s;
+      user-select: none;
+    }
+    #easter-cake:hover {
+      color: #ffb6c1;
+      background: #fff0fa;
+      font-size: 2.6rem;
+    }
+    #go-journey-btn {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      z-index: 12000;
+      background: linear-gradient(90deg, #ffb6c1 0%, #e94a6a 100%);
+      color: #fff;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: bold;
+      padding: 16px 32px;
+      border-radius: 32px;
+      box-shadow: 0 4px 24px #ffb6c1, 0 0 0 6px #fff0fa inset;
+      border: none;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      outline: none;
+      letter-spacing: 1px;
+      cursor: pointer;
+      opacity: 0.97;
+    }
+    #go-journey-btn:hover {
+      background: linear-gradient(90deg, #e94a6a 0%, #ffb6c1 100%);
+      color: #fff;
+      transform: scale(1.07) translateY(-2px);
+      box-shadow: 0 8px 32px #e94a6a, 0 0 0 10px #fff0fa inset;
+      text-shadow: 0 0 8px #fff0fa;
+    }
+    @media (max-width: 600px) {
+      .cake-container { width: 98vw; min-width: 220px; }
+      .cake-base { width: 90vw; }
+      .cake-top { width: 70vw; }
+      .cake-icing { width: 74vw; }
+      .candles { width: 70vw; }
+      .wish-popup { font-size: 1.2rem; padding: 18vw 2vw; }
+    }
+    #mail-instruct {
+      position: fixed;
+      top: 24px;
+      right: 32px;
+      z-index: 10001;
+      cursor: pointer;
+      font-size: 2.2rem;
+      user-select: none;
+      transition: transform 0.15s;
+    }
+    /* Balloon and Confetti Animation Overlay */
+    #bday-anim-overlay {
+      pointer-events: none;
+      position: fixed;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      z-index: 9999;
+      overflow: visible;
+    }
+    .bday-balloon {
+      position: absolute;
+      width: 48px; height: 72px;
+      background: radial-gradient(circle at 60% 30%, #ffb6c1 60%, #ff69b4 100%);
+      border-radius: 50% 50% 48% 48%/60% 60% 100% 100%;
+      box-shadow: 0 8px 24px #ffb6c1aa;
+      animation: balloonFloat 8s linear infinite;
+      opacity: 0.85;
+      will-change: transform;
+    }
+    .bday-balloon:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: -18px;
+      width: 2px;
+      height: 22px;
+      background: #ff69b4;
+      border-radius: 2px;
+      transform: translateX(-50%);
+      opacity: 0.7;
+    }
+    @keyframes balloonFloat {
+      0% { transform: translateY(100vh) scale(1) rotate(-8deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-120px) scale(1.05) rotate(8deg); opacity: 0; }
+    }
+    .bday-confetti {
+      position: absolute;
+      width: 12px; height: 18px;
+      border-radius: 4px;
+      opacity: 0.85;
+      animation: confettiFloat 3.5s linear infinite;
+      will-change: transform;
+    }
+    @keyframes confettiFloat {
+      0% { transform: translateY(100vh) rotate(0deg) scale(1); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-60px) rotate(360deg) scale(1.1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>Make a Wish, Sloth 🎂✨</h1>
+  <div class="cake-container" id="cake-main">
+    <div class="cake-plate"></div>
+    <div class="cake-layer bottom">
+      <div class="cake-drip-bottom">
+        <svg viewBox="0 0 240 22"><path d="M0,0 Q15,8 30,0 Q45,12 60,2 Q75,18 90,2 Q105,16 120,4 Q135,20 150,2 Q165,18 180,4 Q195,20 210,2 Q225,12 240,0 L240,22 L0,22 Z" fill="#4b2300"/></svg>
+      </div>
+    </div>
+    <div class="cake-layer middle">
+      <div class="cake-drip-middle">
+        <svg viewBox="0 0 200 28"><path d="M0,0 Q10,10 25,0 Q40,18 55,2 Q70,24 85,2 Q100,20 115,4 Q130,26 145,2 Q160,24 175,4 Q190,18 200,0 L200,28 L0,28 Z" fill="#4b2300"/></svg>
+      </div>
+    </div>
+    <div class="cake-layer top">
+      <div class="cake-drip">
+        <svg viewBox="0 0 160 32"><path d="M0,0 Q10,12 20,0 Q30,20 40,2 Q50,28 60,2 Q70,24 80,4 Q90,30 100,2 Q110,28 120,4 Q130,20 140,0 Q150,12 160,0 L160,32 L0,32 Z" fill="#4b2300"/></svg>
+      </div>
+    </div>
+    <div class="cake-icing"></div>
+    <div class="cake-toppings">
+      <div class="topping cherry" style="left:10px;top:8px;"></div>
+      <div class="topping cherry" style="left:120px;top:10px;"></div>
+      <div class="topping choco" style="left:40px;top:18px;"></div>
+      <div class="topping choco" style="left:90px;top:20px;"></div>
+      <div class="topping sprinkle" style="left:25px;top:25px;"></div>
+      <div class="topping sprinkle" style="left:60px;top:10px;"></div>
+      <div class="topping sprinkle" style="left:100px;top:28px;"></div>
+    </div>
+    <div class="candles" id="candles">
+      <!-- Candles will be generated by JS -->
+    </div>
+  </div>
+  <div class="wish-popup" id="wishPopup">
+    <div id="wishText">Happy Birthday, Pavani!<br>May all your dreams come true! 🎉🎂💖</div>
+  </div>
+  <div class="confetti" id="confetti"></div>
+  <div id="easter2" onclick="alert('You found the final egg! Sloth once slept through a full earthquake and woke up asking if lunch was ready 😭😂')">...🎈</div>
+  <div id="mail-instruct" style="position:fixed;top:24px;right:32px;z-index:10001;cursor:pointer;font-size:2.2rem;user-select:none;transition:transform 0.15s;" title="Click for instructions">📧</div>
+  <div id="easter-cake" title="Cake slice secret">🍰</div>
+  <a href="journeyv.html" id="go-journey-btn" title="See the journey!">Go to Journey 🚀</a>
+  <!-- Balloon and Confetti Animation Overlay -->
+  <div id="bday-anim-overlay"></div>
+  <script>
+    // Generate 7 candles
+    const candleColors = ['#ffb6c1','#ffe4fa','#ff69b4','#fff','#ffb6c1','#ffe4fa','#ff69b4'];
+    const candlesDiv = document.getElementById('candles');
+    let blown = Array(7).fill(false);
+    for(let i=0;i<7;i++){
+      const candle = document.createElement('div');
+      candle.className = 'candle';
+      candle.style.background = `linear-gradient(180deg, ${candleColors[i]} 60%, #fff0fa 100%)`;
+      candle.innerHTML = `<div class='wick'></div><div class='flame' id='flame${i}'><svg width='16' height='22'><ellipse cx='8' cy='11' rx='7' ry='10' fill='gold' opacity='0.85'/><ellipse cx='8' cy='13' rx='3' ry='5' fill='orange' opacity='0.7'/></svg></div>`;
+      candle.onclick = function(e){
+        if(blown[i]) return;
+        blown[i]=true;
+        const flame = document.getElementById('flame'+i);
+        flame.classList.add('off');
+        // Add smoke
+        const smoke = document.createElement('div');
+        smoke.className = 'smoke';
+        smoke.innerHTML = `<svg width='12' height='18'><ellipse cx='6' cy='9' rx='5' ry='8' fill='gray' opacity='0.18'/></svg>`;
+        flame.parentNode.appendChild(smoke);
+        setTimeout(()=>smoke.remove(),1100);
+        checkAllBlown();
+      };
+      candlesDiv.appendChild(candle);
+    }
+    function checkAllBlown(){
+      if(blown.every(x=>x)){
+        setTimeout(showWish, 700);
+      }
+    }
+    function showWish(){
+      document.getElementById('wishPopup').classList.add('active');
+      launchConfetti();
+      setTimeout(()=>{
+        popupMessages();
+      }, 900);
+    }
+    // Confetti burst
+    function launchConfetti(){
+      const confetti = document.getElementById('confetti');
+      confetti.innerHTML = '';
+      const emojis = ['🎉','🎂','🎈','🥳','✨','🎊','🍰','🪅','🎁','🕯️'];
+      for(let i=0;i<38;i++){
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.left = Math.random()*100+'vw';
+        piece.style.top = '-40px';
+        piece.style.fontSize = (1.2+Math.random()*1.2)+'rem';
+        piece.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        piece.style.animationDelay = (Math.random()*0.7)+'s';
+        confetti.appendChild(piece);
+      }
+      setTimeout(()=>{confetti.innerHTML='';}, 2200);
+    }
+    // Popups
+    function popupMessages(){
+      const wishPopup = document.getElementById('wishPopup');
+      const popups = [
+        "Wishing you endless joy! 🥳",
+        "May your year be as sweet as cake! 🍰",
+        "Stay lazy, stay awesome! 🐨",
+        "You light up every room! ✨",
+        "Sloth queen forever! 👑",
+        "Bro loves you always! 🫂"
+      ];
+      let idx = 0;
+      function showNext(){
+        if(idx>=popups.length) return;
+        const msg = document.createElement('div');
+        msg.style.marginTop = '18px';
+        msg.style.fontSize = '1.2rem';
+        msg.style.color = '#ff69b4';
+        msg.style.opacity = '0';
+        msg.style.animation = 'popupMsg 1.2s cubic-bezier(.4,0,.2,1) forwards';
+        msg.textContent = popups[idx++];
+        wishPopup.appendChild(msg);
+        setTimeout(showNext, 650);
+      }
+      showNext();
+    }
+    // Popup animation
+    const style = document.createElement('style');
+    style.innerHTML = `@keyframes popupMsg {0%{opacity:0;transform:translateY(20px) scale(0.9);}100%{opacity:1;transform:translateY(0) scale(1);}}`;
+    document.head.appendChild(style);
+    // Mail emoji instruction popup
+    document.getElementById('mail-instruct').onclick = function() {
+      const msg = document.createElement('div');
+      msg.style.position = 'fixed';
+      msg.style.left = '50%';
+      msg.style.top = '50%';
+      msg.style.transform = 'translate(-50%,-50%) scale(1)';
+      msg.style.background = 'rgba(255,255,255,0.98)';
+      msg.style.color = '#c72c48';
+      msg.style.borderRadius = '24px';
+      msg.style.boxShadow = '0 4px 32px #ffb6c1, 0 0 0 6px #fff0fa inset';
+      msg.style.padding = '36px 28px 28px 28px';
+      msg.style.fontSize = '1.3rem';
+      msg.style.fontFamily = "'Open Sans', sans-serif";
+      msg.style.zIndex = 20001;
+      msg.style.textAlign = 'center';
+      msg.style.border = '3px solid #ffb6c1';
+      msg.innerHTML = '<b>How to reveal your birthday wish:</b><br><br>Blow out <span style="color:#e94a6a;font-weight:bold">all 7 candles</span> by clicking on each one!<br>When every candle is out, your special message and celebration will appear! 🎉<br><br><button id="close-instruct" style="margin-top:18px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;">Got it!</button>';
+      document.body.appendChild(msg);
+      document.getElementById('close-instruct').onclick = function(){msg.remove();};
+    }
+    // Cake page easter egg
+    document.getElementById('easter-cake').onclick = function(e) {
+      e.stopPropagation();
+      const burst = document.createElement('div');
+      burst.style.position = 'fixed';
+      burst.style.left = '50%';
+      burst.style.top = '54%';
+      burst.style.transform = 'translate(-50%,-50%)';
+      burst.style.zIndex = 30001;
+      burst.style.fontSize = '1.1rem';
+      burst.style.pointerEvents = 'auto';
+      burst.style.background = 'rgba(255,255,255,0.99)';
+      burst.style.borderRadius = '22px';
+      burst.style.boxShadow = '0 4px 32px #ffb6c1, 0 0 0 6px #fff0fa inset';
+      burst.style.padding = '32px 22px 22px 22px';
+      burst.style.color = '#c72c48';
+      burst.style.textAlign = 'left';
+      burst.style.border = '3px solid #ffb6c1';
+      burst.style.maxWidth = '90vw';
+      burst.style.maxHeight = '80vh';
+      burst.style.overflowY = 'auto';
+      burst.style.animation = 'cakeEggPop 1.2s cubic-bezier(.4,0,.2,1) forwards';
+      burst.innerHTML = `<div style='font-size:1.5rem;text-align:center;margin-bottom:10px;'>Dear Future Investigators😎🤓 ,</div>
+      <div>If you’re reading this, it means I am no longer among the living🫠. The cause of my death? A fish cake. Yes, you heard that right—death by fish cake🤯😵‍💫. But before you dismiss this as some cooking disaster of my own ignorant cooking, let me tell you how this very very sad tragedy happened 🧐<br><br>
+      It all started with a girl named Pavani. Pavani, my dear friend (or so I thought)🤧🤧, had a problem with a boy named Cow. Yes, Cow (cuz of various reasons but mainly cuz he hmms a lot yes he humms!)🐄🐮. I know. Moving on. Apparently, Cow talked to her rudely👹👹😡, and Pavani, being the mastermind criminal she is, decided that he must be eliminated👾☠. But Pavani was far too clever to get her hands dirty😼. Instead, she turned to me, her loyal (and now very dead) friend, for "ideas."😓😞<br>After a long discussion she said!<br>"Make a fish cake," she said. "Feed it to Cow," she said. "It’ll be foolproof," she said.🤡😫<br><br>
+      What she didn’t say was that I’d somehow end up being the one to taste-test this monstrosity and meet my very very sadend 🤧😭😭. I should have known something was fishy (fun intended) when she handed me that suspicious packet labeled ‘Extra Special Mystery Powder’😱😱.<br><br>
+      So here I am, writing this note from the other side, trying to warn the world about Pavani’s dark, fishy schemes. To whoever finds this note 🥹🥺:<br><br>
+      <b>1. Pavani is not as innocent as she seems.👹</b><br><br>
+      <b>2. Never, under any circumstances, agree to bake anything with her.💣</b><br><br>
+      <b>3. Cow, if you’re reading this, you owe me BIG TIME!!!.😤😤😤</b><br><br>
+      In conclusion, I leave this world with one final request: please name a cooking safety rule after me🥹🥹. Something like, “Always double-check the ingredients, or you might end up like that fish cake guy.”😖😣<br><br>
+      Yours post death guy poor fellow🥲,<br><b>[Mr Panda]</b><br><br>
+      <i>P.S. Pavani, I hope this note haunts you every time you smell seafood.🥲</i></div>
+      <button id='close-cake-egg' style='margin-top:18px;padding:8px 22px;font-size:1rem;background:#ffb6c1;color:#fff;border:none;border-radius:12px;cursor:pointer;box-shadow:0 2px 8px #ffb6c1;display:block;margin-left:auto;margin-right:auto;'>Close</button>`;
+      document.body.appendChild(burst);
+      document.getElementById('close-cake-egg').onclick = function(){burst.remove();};
+      setTimeout(()=>{if(document.body.contains(burst)) burst.remove();}, 15000);
+    };
+    // Cake main click easter egg
+    document.getElementById('cake-main').onclick = function(e) {
+      // Prevent firing when clicking a candle or topping
+      if (e.target.closest('.candle') || e.target.closest('.topping') || e.target.closest('#easter-cake') || e.target.closest('#mail-instruct')) return;
+      const burst = document.createElement('div');
+      burst.style.position = 'fixed';
+      burst.style.left = '50%';
+      burst.style.top = '54%';
+      burst.style.transform = 'translate(-50%,-50%)';
+      burst.style.zIndex = 30001;
+      burst.style.fontSize = '2.1rem';
+      burst.style.pointerEvents = 'none';
+      burst.style.background = 'rgba(255,255,255,0.98)';
+      burst.style.borderRadius = '22px';
+      burst.style.boxShadow = '0 4px 32px #ffb6c1, 0 0 0 6px #fff0fa inset';
+      burst.style.padding = '32px 22px 22px 22px';
+      burst.style.color = '#c72c48';
+      burst.style.textAlign = 'center';
+      burst.style.border = '3px solid #ffb6c1';
+      burst.style.animation = 'cakeEggPop 1.2s cubic-bezier(.4,0,.2,1) forwards';
+      burst.innerHTML = '🐟🎂💀<br><span style="font-size:1.1rem;color:#c72c48;">Sloth once tried to make a Fish cake and almost killed her bestiee! 😂😭</span>';
+      document.body.appendChild(burst);
+      setTimeout(()=>burst.remove(), 5000);
+    };
+    // Balloon and Confetti Animation
+    function spawnBalloonsAndConfetti() {
+      const overlay = document.getElementById('bday-anim-overlay');
+      // Balloons
+      for(let i=0;i<7;i++){
+        const balloon = document.createElement('div');
+        balloon.className = 'bday-balloon';
+        const left = 5 + Math.random()*90;
+        balloon.style.left = left + 'vw';
+        balloon.style.bottom = '-80px';
+        balloon.style.background = `radial-gradient(circle at 60% 30%, ${['#ffb6c1','#ff69b4','#ffe4fa','#f4a5c0','#f7cac9','#f9e79f','#a3e4d7'][i%7]} 60%, #ff69b4 100%)`;
+        balloon.style.animationDelay = (Math.random()*6) + 's';
+        overlay.appendChild(balloon);
+      }
+      // Confetti
+      for(let i=0;i<22;i++){
+        const confetti = document.createElement('div');
+        confetti.className = 'bday-confetti';
+        const left = 2 + Math.random()*96;
+        confetti.style.left = left + 'vw';
+        confetti.style.bottom = '-30px';
+        confetti.style.background = ['#ffb6c1','#ff69b4','#ffe4fa','#f4a5c0','#f7cac9','#f9e79f','#a3e4d7','#fff','#e94a6a'][i%9];
+        confetti.style.animationDelay = (Math.random()*3.5) + 's';
+        overlay.appendChild(confetti);
+      }
+    }
+    window.addEventListener('DOMContentLoaded', spawnBalloonsAndConfetti);
+  </script>
+</body>
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Pavani 🎂</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #ff69b4;
+      --secondary: #ffb6c1;
+      --accent: #fff;
+      --shadow: 0 4px 32px 0 rgba(255, 105, 180, 0.2);
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
+      background-blend-mode: lighten;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .container {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 32px;
+      box-shadow: var(--shadow);
+      padding: 48px 32px 40px 32px;
+      max-width: 420px;
+      width: 90vw;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn 1.2s cubic-bezier(.4,0,.2,1);
+      background-image: url('https://media.istockphoto.com/id/913088248/vector/cartoon-people-and-happy-birthday.jpg?s=612x612&w=0&k=20&c=1OKTghqiGYiz_oUtKmJoKq4VvBRsbTKpOK-Lt1UlMXA=');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      overflow: hidden;
+    }
+    .container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 182, 193, 0.45);
+      border-radius: 32px;
+      z-index: 1;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .container h1, .container p, .container .button {
+      position: relative;
+      z-index: 2;
+      background: rgba(0,0,0,0.45);
+      border-radius: 18px;
+      padding: 0.5em 0.7em;
+      margin-bottom: 0.7em;
+      box-shadow: 0 2px 12px 0 rgba(0,0,0,0.10);
+      text-shadow: 0 2px 16px #000, 0 0 2px #fff, 0 0 8px #ffb6c1;
+      animation: fadeUp 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    .container h1 {
+      font-size: 3.2rem;
+      animation-delay: 0.1s;
+      cursor: pointer;
+      transition: text-shadow 0.4s, color 0.4s;
+    }
+    .container h1:hover {
+      color: #fff;
+      text-shadow:
+        0 0 24px #fff,
+        0 0 48px #ff69b4,
+        0 0 80px #ffb6c1,
+        0 0 120px #ff69b4;
+      filter: brightness(1.2) saturate(1.2);
+    }
+    .container p {
+      font-size: 1.25rem;
+      animation-delay: 0.4s;
+    }
+    .container .button {
+      font-size: 1.2rem;
+      animation-delay: 0.7s;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border: 2px solid #fff;
+      color: #fff;
+      font-weight: 700;
+      box-shadow: 0 2px 16px 0 rgba(255, 105, 180, 0.25);
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.2rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      text-shadow: 0 0 16px var(--primary), 0 0 32px var(--secondary);
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px var(--primary); }
+      to { text-shadow: 0 0 20px var(--primary), 0 0 30px #ff1493, 0 0 40px var(--primary); }
+    }
+    p {
+      font-size: 1.25rem;
+      margin: 10px 0 32px;
+      color: #fff;
+      text-shadow: 0 1px 8px #ff69b4;
+    }
+    .button {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      border: none;
+      padding: 16px 40px;
+      font-size: 1.2rem;
+      color: #fff;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 2px 16px 0 rgba(255, 105, 180, 0.15);
+      transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+      outline: none;
+      margin-bottom: 8px;
+    }
+    .button:hover, .button:focus {
+      background: linear-gradient(90deg, #ff1493, #ffb6c1);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 4px 24px 0 rgba(255, 20, 147, 0.25);
+    }
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 10;
+    }
+    /* Easter Egg */
+    #secret {
+      position: fixed;
+      bottom: 12px;
+      right: 18px;
+      font-size: 14px;
+      color: rgba(255,255,255,0.18);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.2s, font-size 0.2s;
+      z-index: 20;
+    }
+    #secret.revealed {
+      color: #fff;
+      font-size: 1.1rem;
+      background: rgba(255, 182, 193, 0.2);
+      border-radius: 12px;
+      padding: 6px 14px;
+      box-shadow: 0 2px 8px 0 rgba(255, 182, 193, 0.18);
+      animation: pop 0.5s;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.7); }
+      80% { transform: scale(1.15); }
+      100% { transform: scale(1); }
+    }
+    /* Balloons */
+    .balloons {
+      position: absolute;
+      left: 0; top: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 3;
+    }
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 48px; height: 64px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      opacity: 0.85;
+      animation: floatBalloon 7s linear infinite;
+      box-shadow: 0 8px 24px 0 rgba(0,0,0,0.12);
+    }
+    .balloon1 { left: 10%; background: #ff69b4; animation-delay: 0s; }
+    .balloon2 { left: 30%; background: #ffb6c1; animation-delay: 2s; }
+    .balloon3 { left: 60%; background: #ffe4e1; animation-delay: 1s; }
+    .balloon4 { left: 80%; background: #ff1493; animation-delay: 3s; }
+    @keyframes floatBalloon {
+      0% { transform: translateY(0) scale(1); opacity: 0.85; }
+      10% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(-420px) scale(1.08); opacity: 0; }
+    }
+    .balloon::after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 100%;
+      width: 2px;
+      height: 32px;
+      background: #fff;
+      transform: translateX(-50%);
+      opacity: 0.5;
+    }
+    /* Sparkles */
+    .sparkle {
+      position: absolute;
+      width: 12px; height: 12px;
+      background: radial-gradient(circle, #fff 60%, #ffb6c1 100%);
+      border-radius: 50%;
+      opacity: 0.7;
+      pointer-events: none;
+      animation: sparkleAnim 2.5s linear infinite;
+    }
+    @keyframes sparkleAnim {
+      0% { opacity: 0; transform: scale(0.5); }
+      10% { opacity: 1; transform: scale(1.2); }
+      80% { opacity: 1; }
+      100% { opacity: 0; transform: scale(0.5); }
+    }
+    audio { display: none; }
+    @media (max-width: 600px) {
+      .container { padding: 28px 8vw 24px 8vw; }
+      h1 { font-size: 2.1rem; }
+      p { font-size: 1rem; }
+    }
+    /* Sloth Modal Easter Egg */
+    .sloth-modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0; top: 0; width: 100vw; height: 100vh;
+      background: rgba(0,0,0,0.65);
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.5s;
+    }
+    .sloth-modal.active {
+      display: flex;
+    }
+    .sloth-modal-content {
+      background: rgba(255,255,255,0.95);
+      border-radius: 24px;
+      padding: 40px 32px 32px 32px;
+      box-shadow: 0 8px 48px 0 rgba(255, 105, 180, 0.25);
+      text-align: center;
+      position: relative;
+      min-width: 320px;
+      animation: popIn 0.7s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes popIn {
+      0% { transform: scale(0.7); opacity: 0; }
+      80% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .sloth-modal-close {
+      position: absolute;
+      top: 12px; right: 18px;
+      font-size: 2rem;
+      color: #ff69b4;
+      cursor: pointer;
+      transition: color 0.2s;
+      z-index: 2;
+    }
+    .sloth-modal-close:hover { color: #ff1493; }
+    .sloth-modal-heart {
+      font-size: 3rem;
+      animation: heartBeat 1.2s infinite alternate;
+      margin-bottom: 18px;
+    }
+    @keyframes heartBeat {
+      from { transform: scale(1); }
+      to { transform: scale(1.18); }
+    }
+    .sloth-modal-text {
+      font-size: 1.4rem;
+      color: #ff1493;
+      font-family: 'Great Vibes', cursive;
+      animation: textPop 1.2s cubic-bezier(.4,0,.2,1);
+    }
+    @keyframes textPop {
+      0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+      80% { opacity: 1; transform: translateY(-8px) scale(1.05); }
+      100% { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .sloth-modal-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+      background: linear-gradient(90deg, #ff1744, #ff8a80, #fff, #ff1744 90%);
+      background-size: 200% 200%;
+      border-radius: 16px 16px 0 0;
+      padding: 10px 24px 8px 24px;
+      margin: -32px -32px 18px -32px;
+      box-shadow: 0 2px 16px 0 #ff1744cc;
+      letter-spacing: 1px;
+      text-shadow: 0 2px 12px #ff1744, 0 0 2px #fff;
+      animation: eggPop 1s cubic-bezier(.4,0,.2,1);
+      position: relative;
+      z-index: 2;
+    }
+    @keyframes eggPop {
+      0% { opacity: 0; transform: translateY(-40px) scale(0.7) rotate(-8deg); }
+      60% { opacity: 1; transform: translateY(8px) scale(1.08) rotate(2deg); }
+      100% { opacity: 1; transform: translateY(0) scale(1) rotate(0); }
+    }
+    .queen.diamond {
+      background: linear-gradient(120deg, #ff1744 20%, #ff8a80 50%, #fff 80%, #ff1744 100%);
+      background-size: 300% 300%;
+      color: #fff;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-fill-color: transparent;
+      font-weight: bold;
+      box-shadow: 0 2px 24px 0 #ff1744cc, 0 0 8px #fff;
+      padding: 2px 14px;
+      margin-left: 6px;
+      border-radius: 14px;
+      position: relative;
+      animation: diamondGlow 1.5s infinite alternate, diamondSparkle 2.5s infinite linear;
+    }
+    @keyframes diamondGlow {
+      from { filter: drop-shadow(0 0 8px #ff1744cc); }
+      to { filter: drop-shadow(0 0 24px #fff) drop-shadow(0 0 12px #ff1744); }
+    }
+    @keyframes diamondSparkle {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
+  </style>
+</head>
+<body>
+  <audio autoplay loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_9fd97b17de.mp3" type="audio/mpeg">
+  </audio>
+  <canvas class="confetti"></canvas>
+  <main class="container" role="main" aria-label="Birthday greeting">
+    <div class="balloons">
+      <div class="balloon balloon1"></div>
+      <div class="balloon balloon2"></div>
+      <div class="balloon balloon3"></div>
+      <div class="balloon balloon4"></div>
+    </div>
+    <div id="sparkle-container"></div>
+    <h1 id="sloth-heading">Happy Birthday Sloth 🐨💖</h1>
+    <p>To the most special, lazy, talkative, irritating but kindest soul I know 😌💫</p>
+    <button class="button" onclick="goToNextPage()" aria-label="Continue to next page">Tap to Continue</button>
+  </main>
+  <div id="sloth-modal" class="sloth-modal">
+    <div class="sloth-modal-content">
+      <div class="sloth-modal-title">🥚 Easter Egg Found!</div>
+      <span class="sloth-modal-close" onclick="closeSlothModal()">&times;</span>
+      <div class="sloth-modal-heart">💖</div>
+      <div class="sloth-modal-text">Pavani, you are not just a sloth but the <span class="queen diamond">Queen of Sloth!</span></div>
+    </div>
+  </div>
+  <div id="secret" tabindex="0" aria-label="Secret Easter Egg" onclick="revealSecret()" onkeydown="if(event.key==='Enter'){revealSecret();}">...🐾</div>
+  <script>
+    // Confetti animation
+    const confetti = document.querySelector('.confetti');
+    const ctx = confetti.getContext('2d');
+    let pieces = [];
+    function randomColor() {
+      const colors = ['#ff69b4', '#ffb6c1', '#fff', '#ffe4e1', '#ff1493'];
+      return colors[Math.floor(Math.random() * colors.length)];
+    }
+    function createPiece() {
+      return {
+        x: Math.random() * window.innerWidth,
+        y: Math.random() * -40,
+        r: 6 + Math.random() * 8,
+        d: 2 + Math.random() * 2,
+        color: randomColor(),
+        tilt: Math.random() * 10 - 5,
+        tiltAngle: 0,
+        tiltAngleIncremental: (Math.random() * 0.07) + 0.05
+      };
+    }
+    function resizeConfetti() {
+      confetti.width = window.innerWidth;
+      confetti.height = window.innerHeight;
+    }
+    function drawConfetti() {
+      ctx.clearRect(0, 0, confetti.width, confetti.height);
+      for (let i = 0; i < pieces.length; i++) {
+        let p = pieces[i];
+        ctx.beginPath();
+        ctx.lineWidth = p.r;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 3, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r);
+        ctx.stroke();
+      }
+      updateConfetti();
+      requestAnimationFrame(drawConfetti);
+    }
+    function updateConfetti() {
+      for (let i = 0; i < pieces.length; i++) {
+        let p = pieces[i];
+        p.y += p.d;
+        p.tiltAngle += p.tiltAngleIncremental;
+        p.tilt = Math.sin(p.tiltAngle) * 12;
+        if (p.y > window.innerHeight) {
+          pieces[i] = createPiece();
+          pieces[i].y = -20;
+        }
+      }
+    }
+    function initConfetti() {
+      pieces = [];
+      for (let i = 0; i < 80; i++) {
+        pieces.push(createPiece());
+      }
+      resizeConfetti();
+      drawConfetti();
+    }
+    window.addEventListener('resize', resizeConfetti);
+    initConfetti();
+
+    // Sparkle animation
+    const sparkleContainer = document.getElementById('sparkle-container');
+    function randomSparkle() {
+      const s = document.createElement('div');
+      s.className = 'sparkle';
+      s.style.left = Math.random() * 90 + 5 + '%';
+      s.style.top = Math.random() * 70 + 10 + '%';
+      s.style.animationDelay = (Math.random() * 2.5) + 's';
+      sparkleContainer.appendChild(s);
+      setTimeout(() => s.remove(), 2500);
+    }
+    setInterval(randomSparkle, 350);
+
+    function goToNextPage() {
+      window.location.href = "mainv.html";
+    }
+    function revealSecret() {
+      const secret = document.getElementById('secret');
+      secret.classList.add('revealed');
+      secret.innerText = "You found an easter egg! Pavani is secretly the Queen of Sloths 👑🦥 but shhh...";
+      setTimeout(() => {
+        secret.classList.remove('revealed');
+        secret.innerText = '...🐾';
+      }, 5000);
+    }
+    document.getElementById('sloth-heading').addEventListener('click', function() {
+      document.getElementById('sloth-modal').classList.add('active');
+    });
+    function closeSlothModal() {
+      document.getElementById('sloth-modal').classList.remove('active');
+    }
+  </script>
+</body>
+</html>
